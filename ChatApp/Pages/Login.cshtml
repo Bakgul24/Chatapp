@@ -1,0 +1,132 @@
+﻿@page
+@model LoginModel
+@{
+}
+
+@section Scripts {
+    <script>
+        function goToRegister() {
+            window.location.href = "../Register"
+        }
+
+        function setLocalStorage() {
+            var userNameValue = document.getElementById("username").value; // Retrieve the value of the username input field
+            sessionStorage.setItem("userName", userNameValue);
+            authenticateUser();
+        }
+
+        function authenticateUser() {
+            sessionStorage.setItem("isAuthenticated", true);
+        }
+
+        function logoutUser() {
+            sessionStorage.removeItem("isAuthenticated");
+            window.location.href = "/";
+        }
+
+        function checkAuthenticationBool() {
+            var isAuthenticated = sessionStorage.getItem("isAuthenticated");
+            if (!isAuthenticated) {
+                return false;
+            }
+
+            return true;
+        }
+
+        window.onload = function () {
+            var currentPath = window.location.pathname;
+
+            if (currentPath === "/" && checkAuthenticationBool()) {
+                window.location.href = "/Login";
+            }
+        }
+    </script>
+}
+
+
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('loginbackground.jpg');
+        }
+
+        #btn {
+            margin-top: 30px;
+            margin-right: 20px;
+        }
+
+        #btn2 {
+            margin-top: 30px;
+            margin-right: 20px;
+        }
+
+        img {
+            width: 250px;
+            height: 250px;
+        }
+
+        .imgDiv {
+            justify-content: center;
+            display: flex !important;
+        }
+
+        .login-heading {
+            font-size: 30px;
+            padding-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            height: 40px;
+        }
+
+        .logindiv {
+            font-family: 'Times New Roman', Times, serif;
+            margin-left: auto;
+            margin-right: auto;
+            height: 600px;
+            width: 400px;
+            font-size: large;
+            border-collapse: collapse;
+            border-radius: 15px;
+            background-color: white;
+        }
+
+        .form-group {
+            align-items: center;
+            display: flex;
+            gap: 15px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logindiv">
+        <div class="imgDiv">
+            <img src="~/icon.png" />
+        </div>
+        <div>
+            <div class="login-heading">
+                <label style="width:100%;text-align:center; font-weight:bold" for="login">Login</label>
+            </div>
+            <form method="post">
+                <div class="form-group">
+                    <label style="width:100px" for="username">Email: </label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+                <div class="form-group">
+                    <label style="width:100px" for="password">Password: </label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <div style="justify-content:end; display:flex">
+                    <a onclick="goToRegister()" class="btn btn-primary" id="btn2">Register</a>
+                    <button type="submit" onclick="setLocalStorage()" class="btn btn-primary" id="btn">Login</button>
+                </div>
+                <p>@Model.ErrorMessage</p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

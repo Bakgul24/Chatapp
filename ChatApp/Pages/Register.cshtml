@@ -1,0 +1,106 @@
+﻿@page
+@model ChatApp.Pages.RegisterModel
+@{
+}
+
+@section Scripts {
+    <script>
+        function goToLogin(){
+            window.location.href = "../Index"
+            }
+    </script>
+}
+
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('loginbackground.jpg');
+        }
+
+        #btn {
+            margin-top: 30px;
+            margin-right: 20px;
+        }
+
+        #btn2 {
+            margin-top: 30px;
+            margin-right: 20px;
+        }
+
+        img {
+            width: 250px;
+            height: 250px;
+        }
+
+        .imgDiv {
+            justify-content: center;
+            display: flex !important;
+        }
+
+        .login-heading {
+            font-size: 30px;
+            padding-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            height: 40px;
+        }
+
+        .logindiv {
+            font-family: 'Times New Roman', Times, serif;
+            margin-left: auto;
+            margin-right: auto;
+            height: 760px;
+            width: 400px;
+            font-size: large;
+            border-collapse: collapse;
+            border-radius: 15px;
+            background-color: white;
+        }
+
+        .form-group {
+            align-items: center;
+            display: flex;
+            gap: 15px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logindiv">
+        <div class="imgDiv">
+            <img src="~/icon.png" />
+        </div>
+        <div>
+            <div class="login-heading">
+                <label style="width:100%;text-align:center; font-weight:bold" for="login">Register</label>
+            </div>
+            <form method="post">
+                <div class="form-group">
+                    <label style="width:100px" for="name">Name: </label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="form-group">
+                    <label style="width:100px" for="surname">Surname: </label>
+                    <input type="text" class="form-control" id="surname" name="surname">
+                </div>
+                <div class="form-group">
+                    <label style="width:100px" for="email">Email: </label>
+                    <input type="text" class="form-control" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label style="width:100px" for="password">Password: </label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <div style="justify-content:end; display:flex">
+                    <a onclick="goToLogin()" class="btn btn-primary" id="btn">Go to Login</a>
+                    <button type="submit"  class="btn btn-primary" id="btn2">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
